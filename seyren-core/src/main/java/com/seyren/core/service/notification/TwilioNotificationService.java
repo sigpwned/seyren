@@ -64,8 +64,8 @@ public class TwilioNotificationService implements NotificationService {
         }
         
         String body;
-        if (check.getState() == AlertType.ERROR) {
-            body = "ERROR Check "+check.getName()+" has exceeded its threshold.";
+        if (check.getState()==AlertType.ERROR || check.getState()==AlertType.WARN) {
+            body = check.getState().name()+" Check "+check.getName()+" has exceeded its threshold.";
         } else if (check.getState() == AlertType.OK) {
             body = "OK Check "+check.getName()+" has been resolved.";
         } else {
